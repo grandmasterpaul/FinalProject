@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "positive-quotes-captions-life-motivational-inspirational-oscar-wilde-6ab0bbfa11404208ad603a2de3ca7234.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

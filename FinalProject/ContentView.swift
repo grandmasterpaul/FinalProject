@@ -5,15 +5,53 @@
 //  Created by Paul Stricker (student LM) on 3/8/24.
 //
 
+
+
+//fix jaydns tab bar/make it work
+
 import SwiftUI
 
+enum ShowView{
+    case open, home
+}
+
 struct ContentView: View {
+    
+    @State var showView: ShowView = .open
+    
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Goodbye, world!")
+            
+            if showView == .open{
+                ArticleView()
+            }
+            
+            else if showView == .home{
+                HomeView()
+            }
+            
+            
+            Spacer()
+            
+            HStack{
+                
+                Button {
+                    showView = .home
+                }label: {
+                    Text("Opening")
+                    Image(systemName: "house")
+                    
+                }
+                
+                Button {
+                    showView = .open
+                }label: {
+                    Text("Articles")
+                    Image(systemName: "book")
+                    
+                }
+            }
         }
         .padding()
     }
