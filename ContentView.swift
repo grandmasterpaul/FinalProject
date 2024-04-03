@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var selectedTab: Tabs = .opening
+    
     var body: some View {
         VStack {
+            
          Spacer()
     Text("Sunny Side Stories")
     .font(.custom("Helvetica", size: 40))
             .foregroundColor(.black)
-            
-    Color("background")
-            .ignoresSafeArea(.all)
-            
+
    Image("picture1")
             Spacer()
     Image("quote1")
       Spacer()
        
+            tab_bar(selectedTab: $selectedTab)
     
         
         }
