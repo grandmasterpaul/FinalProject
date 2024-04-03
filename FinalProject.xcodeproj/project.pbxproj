@@ -11,6 +11,10 @@
 		1CF89F152B9B3FDA00FE5878 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF89F142B9B3FDA00FE5878 /* ContentView.swift */; };
 		1CF89F172B9B3FDB00FE5878 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CF89F162B9B3FDB00FE5878 /* Assets.xcassets */; };
 		1CF89F1A2B9B3FDB00FE5878 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CF89F192B9B3FDB00FE5878 /* Preview Assets.xcassets */; };
+		F348ADDD2BAC77680029CBB8 /* tab bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348ADDC2BAC77680029CBB8 /* tab bar.swift */; };
+		F348ADE22BBC34200029CBB8 /* Top Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348ADE12BBC34200029CBB8 /* Top Stories.swift */; };
+		F348ADE42BBC34DE0029CBB8 /* TabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348ADE32BBC34DE0029CBB8 /* TabViews.swift */; };
+		F348ADE62BBC3CCE0029CBB8 /* Articles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348ADE52BBC3CCE0029CBB8 /* Articles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		1CF89F142B9B3FDA00FE5878 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1CF89F162B9B3FDB00FE5878 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CF89F192B9B3FDB00FE5878 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F348ADDC2BAC77680029CBB8 /* tab bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "tab bar.swift"; sourceTree = "<group>"; };
+		F348ADE12BBC34200029CBB8 /* Top Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Top Stories.swift"; sourceTree = "<group>"; };
+		F348ADE32BBC34DE0029CBB8 /* TabViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViews.swift; sourceTree = "<group>"; };
+		F348ADE52BBC3CCE0029CBB8 /* Articles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Articles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +43,7 @@
 		1CF89F062B9B3FDA00FE5878 = {
 			isa = PBXGroup;
 			children = (
+				F348ADE02BBC33F90029CBB8 /* views */,
 				1CF89F112B9B3FDA00FE5878 /* FinalProject */,
 				1CF89F102B9B3FDA00FE5878 /* Products */,
 			);
@@ -53,6 +62,8 @@
 			children = (
 				1CF89F122B9B3FDA00FE5878 /* FinalProjectApp.swift */,
 				1CF89F142B9B3FDA00FE5878 /* ContentView.swift */,
+				F348ADE52BBC3CCE0029CBB8 /* Articles.swift */,
+				F348ADDB2BAC77480029CBB8 /* Tab Bar */,
 				1CF89F162B9B3FDB00FE5878 /* Assets.xcassets */,
 				1CF89F182B9B3FDB00FE5878 /* Preview Content */,
 			);
@@ -65,6 +76,23 @@
 				1CF89F192B9B3FDB00FE5878 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F348ADDB2BAC77480029CBB8 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				F348ADDC2BAC77680029CBB8 /* tab bar.swift */,
+				F348ADE32BBC34DE0029CBB8 /* TabViews.swift */,
+			);
+			name = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		F348ADE02BBC33F90029CBB8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				F348ADE12BBC34200029CBB8 /* Top Stories.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +165,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F348ADE22BBC34200029CBB8 /* Top Stories.swift in Sources */,
+				F348ADE42BBC34DE0029CBB8 /* TabViews.swift in Sources */,
+				F348ADDD2BAC77680029CBB8 /* tab bar.swift in Sources */,
 				1CF89F152B9B3FDA00FE5878 /* ContentView.swift in Sources */,
+				F348ADE62BBC3CCE0029CBB8 /* Articles.swift in Sources */,
 				1CF89F132B9B3FDA00FE5878 /* FinalProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
