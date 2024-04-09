@@ -3,5 +3,5 @@
 
 target 'Example' do
   use_frameworks!
-  pod 'NewsAPISwift', :path => '../'
+  pod 'NewsAPISwift'
 end
