@@ -11,7 +11,7 @@ import NewsAPISwift
 
 class ListSourcesViewController: UITableViewController {
 
-    let newsAPI = NewsAPI(apiKey: "dd1b797652bf4bfa9fcf128638bc1c3c")
+    let newsAPI = NewsAPI(apiKey: "abbd92b503ab44a7ac01aeae49855bb0")
     var sources = [NewsSource]() {
         didSet {
             DispatchQueue.main.async {
@@ -28,7 +28,7 @@ class ListSourcesViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        newsAPI.getSources(category: .technology, language: .en, country: .us) { result in
+        newsAPI.getSources(category: .all, language: .en, country: .all) { result in
             switch result {
             case .success(let  sourceList):
                 self.sources = sourceList
