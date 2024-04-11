@@ -15,6 +15,7 @@
 		F348ADE22BBC34200029CBB8 /* Top Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348ADE12BBC34200029CBB8 /* Top Stories.swift */; };
 		F348ADE42BBC34DE0029CBB8 /* TabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348ADE32BBC34DE0029CBB8 /* TabViews.swift */; };
 		F348ADE62BBC3CCE0029CBB8 /* Articles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348ADE52BBC3CCE0029CBB8 /* Articles.swift */; };
+		F348ADEE2BC01A740029CBB8 /* Opening.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348ADED2BC01A740029CBB8 /* Opening.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		F348ADE12BBC34200029CBB8 /* Top Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Top Stories.swift"; sourceTree = "<group>"; };
 		F348ADE32BBC34DE0029CBB8 /* TabViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViews.swift; sourceTree = "<group>"; };
 		F348ADE52BBC3CCE0029CBB8 /* Articles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Articles.swift; sourceTree = "<group>"; };
+		F348ADED2BC01A740029CBB8 /* Opening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opening.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				F348ADE12BBC34200029CBB8 /* Top Stories.swift */,
+				F348ADED2BC01A740029CBB8 /* Opening.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F348ADEE2BC01A740029CBB8 /* Opening.swift in Sources */,
 				F348ADE22BBC34200029CBB8 /* Top Stories.swift in Sources */,
 				F348ADE42BBC34DE0029CBB8 /* TabViews.swift in Sources */,
 				F348ADDD2BAC77680029CBB8 /* tab bar.swift in Sources */,
