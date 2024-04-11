@@ -16,12 +16,12 @@ class ListArticlesViewController: UITableViewController {
     var newsAPI = NewsAPI(apiKey: "abbd92b503ab44a7ac01aeae49855bb0")
     var source: NewsSource!
     var selectedProgram : String = ""
-
-    
+    var loaded = true
+     
     var articles = [NewsArticle]() {
         didSet {
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                    self.tableView.reloadData()
             }
         }
     }
@@ -40,13 +40,29 @@ class ListArticlesViewController: UITableViewController {
         navigationItem.title = "Only Good News"
         
         self.articles = []
-        let partialSources = ["abc-news"]
+        let problematics = ["the-jerusalem-post", "vice-news", "wired"]
+        let politicalSources = ["breitbart-news", "fox-news", "politico", "the-hill", "the-huffington-post"]
+        let sportsSources = ["bbc-sport","espn", "espn-cric-info", "four-four-two", "nfl-news", "nhl-news", "talksport", "the-sport-bible"]
+        let businessSources = ["australian-financial-review", "business-insider-uk", "crypto-coins-news", "hacker-news"]
+        let generalSources = ["associated-press", "bbc-news", "al-jazeera-english", "ars-technica", "axios", "fortune", "msnbc", "nbc-news", "news-com-au", "newsweek", "rte", "the-globe-and-mail", "the-hindu", "the-irish-times", "the-lad-bible", "the-washington-post", "time", "usa-today", "recode"]
+        let entertainmentSources = ["entertainment-weekly", "ign", "mashable", "mtv-news", "mtv-news-uk", "polygon"]
+        let scienceSources = ["medical-news-today", "new-scientist", "next-big-future", "techcrunch", "techradar", "the-next-web", "the-verge"]
+        
+        let partialSources = ["entertainment-weekly"]
+        let partialSources2 = ["new-scientist","associated-press", "bbc-news", "entertainment-weekly"]
         let allSources = ["abc-news", "abc-news-au", "al-jazeera-english", "ars-technica", "associated-press", "australian-financial-review", "axios", "bbc-news", "bbc-sport", "breitbart-news", "business-insider-uk", "crypto-coins-news", "entertainment-weekly", "espn", "espn-cric-info", "fortune", "four-four-two", "fox-news", "hacker-news", "ign", "mashable", "medical-news-today", "msnbc", "mtv-news", "mtv-news-uk", "nbc-news", "new-scientist", "news-com-au", "newsweek", "next-big-future", "nfl-news", "nhl-news", "politico", "polygon", "recode", "rte", "talksport", "techcrunch", "techradar", "the-globe-and-mail", "the-hill", "the-hindu", "the-huffington-post", "the-irish-times", "the-jerusalem-post", "the-lad-bible", "the-next-web", "the-sport-bible", "the-verge", "the-washington-post", "time", "usa-today", "vice-news", "wired"]
         for source in partialSources{
-            newsAPI.getTopHeadlines(sources: [source]){ result in
+            newsAPI.getTopHeadlines(q: "", sources: [source]){ result in
                 switch result {
                 case .success(let articles):
-                    self.articles.append(contentsOf: articles)
+        
+                  //  self.articles.append(contentsOf: articles)
+                    for i in 0...articles.count-1 {
+                        
+                        if (determinePositivity(of: articles[i].title)) {
+                            self.articles.append(articles[i])
+                        }
+                    }
                 case .failure(let error):
                     print("\(error)")
                 }
@@ -87,8 +103,10 @@ class ListArticlesViewController: UITableViewController {
         // You can get a reference to the data by using indexPath shown below
         var url : URL? = articles[indexPath.row].url
         let vc = SFSafariViewController(url: url!)
+        
+            
         present(vc, animated: true, completion: nil)
-
+     
         // Create an instance of PlayerTableViewController and pass the variable
         //let destinationVC = StoryViewController()
         //destinationVC.story = selectedProgram
@@ -99,3 +117,27 @@ class ListArticlesViewController: UITableViewController {
         //performSegue(withIdentifier: "Articles", sender: self)
     }
 }
+func determinePositivity(of headline: String) -> Bool {
+    
+    var isPos: Bool = true
+    
+    let positiveKeywords = ["good", "positive", "success", "uplifting", "promising", "kindness", "help", "cure", "triumph", "breakthrough", "improve", "recover", "praise", " sav", "wonder" ]
+    //let negativeKeywords = ["gviuldfhg"]
+    let negativeKeywords = ["dead", "kill", "deaths", "injured", "vote", "elect", "law", "president", "attorney", "lawyer", "inadequate", "jail", "prison", "president", "politic", "dying", "crime", "criminal", "convict", "court", "ballot", "shot", "shoot", "guilty", "innocent", "scam", "bill", "airdrop", "attack", "veto", "ban", "prison", "nude", "slain", "fatal", "devastat", " sex", "russia", "palestin", "murder", "biden", "trump", "elect", "fossil fuel", "abuse", "cruel", " invad", "invasion", "gaza", "israel", "fears", "climate", "syria", " AI ", "AI-", "decline", "collapse"]
+    
+          for keyword in positiveKeywords {
+        if headline.lowercased().contains(keyword) {
+           isPos=true
+        }
+        
+    }
+    for keyword in negativeKeywords {
+        if headline.lowercased().contains(keyword) {
+           isPos=false
+        }
+        
+    }
+    
+    return isPos
+}
+

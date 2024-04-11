@@ -44,6 +44,7 @@ class ListSourcesViewController: UITableViewController {
             
             articlesViewController.newsAPI = newsAPI
             articlesViewController.source = sources[tableView.indexPathForSelectedRow!.row]
+            articlesViewController.tableView.reloadData()
         }
     }
     
