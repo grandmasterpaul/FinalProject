@@ -21,7 +21,7 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" id="g9M-Rd-umZ">
                                 <rect key="frame" x="0.0" y="50" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g9M-Rd-umZ" id="C7S-Tv-nSx">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g9M-Rd-umZ" id="C7S-Tv-nSx" customClass="UIButton" customModule="Example" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
@@ -32,7 +32,18 @@
                             <outlet property="delegate" destination="iR4-Jj-USZ" id="DUk-Iv-Ze7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ztW-rL-FZ2"/>
+                    <navigationItem key="navigationItem" id="ztW-rL-FZ2">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" id="Yvw-Wh-Dv4">
+                            <rect key="frame" x="150" y="5" width="75" height="34.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="arrow.counterclockwise" catalog="system" title=" "/>
+                            <connections>
+                                <action selector="ReloadButton:" destination="iR4-Jj-USZ" eventType="touchUpInside" id="abD-xz-VFc"/>
+                            </connections>
+                        </button>
+                    </navigationItem>
                     <connections>
                         <segue destination="4xc-4F-CRj" kind="show" identifier="Articles" id="pWS-zU-Ynx"/>
                     </connections>
@@ -117,6 +128,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.counterclockwise" catalog="system" width="113" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
