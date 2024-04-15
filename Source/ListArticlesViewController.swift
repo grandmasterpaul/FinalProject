@@ -74,6 +74,8 @@ class ListArticlesViewController: UITableViewController {
                     case .failure(let error):
                         print("\(error)")
                     }
+                case .failure(let error):
+                    print("\(error)")
                 }
             }
         }
