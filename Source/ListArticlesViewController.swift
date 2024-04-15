@@ -22,6 +22,7 @@ class ListArticlesViewController: UITableViewController {
         didSet {
             DispatchQueue.main.async {
                     self.tableView.reloadData()
+            
             }
         }
     }
@@ -31,6 +32,7 @@ class ListArticlesViewController: UITableViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +43,7 @@ class ListArticlesViewController: UITableViewController {
             
             tableView.rowHeight = UITableViewAutomaticDimension
             navigationItem.title = "Only Good News"
-            
+    
             self.articles = []
             let problematics = ["the-jerusalem-post", "vice-news", "wired"]
             let politicalSources = ["breitbart-news", "fox-news", "politico", "the-hill", "the-huffington-post"]
@@ -51,7 +53,7 @@ class ListArticlesViewController: UITableViewController {
             let entertainmentSources = ["entertainment-weekly", "ign", "mashable", "mtv-news", "mtv-news-uk", "polygon"]
             let scienceSources = ["medical-news-today", "new-scientist", "next-big-future", "techcrunch", "techradar", "the-next-web", "the-verge"]
             
-            let partialSources = ["medical-news-today", "new-scientist", "next-big-future"]
+            let partialSources = ["new-scientist"]
             let partialSources2 = ["new-scientist","associated-press", "bbc-news", "entertainment-weekly"]
             let allSources = ["abc-news", "abc-news-au", "al-jazeera-english", "ars-technica", "associated-press", "australian-financial-review", "axios", "bbc-news", "bbc-sport", "breitbart-news", "business-insider-uk", "crypto-coins-news", "entertainment-weekly", "espn", "espn-cric-info", "fortune", "four-four-two", "fox-news", "hacker-news", "ign", "mashable", "medical-news-today", "msnbc", "mtv-news", "mtv-news-uk", "nbc-news", "new-scientist", "news-com-au", "newsweek", "next-big-future", "nfl-news", "nhl-news", "politico", "polygon", "recode", "rte", "talksport", "techcrunch", "techradar", "the-globe-and-mail", "the-hill", "the-hindu", "the-huffington-post", "the-irish-times", "the-jerusalem-post", "the-lad-bible", "the-next-web", "the-sport-bible", "the-verge", "the-washington-post", "time", "usa-today", "vice-news", "wired"]
             
@@ -124,11 +126,19 @@ class ListArticlesViewController: UITableViewController {
         // This will perform the segue and pre-load the variable for you to use
         //performSegue(withIdentifier: "Articles", sender: self)
     }
+  
+    @IBAction func ReloadButton(_ sender: Any) {
+        hasAppeared = false;
+        articles = []
+        viewDidAppear(true)
+        self.tableView.reloadData()
+        
+    }
+    
 }
 func determinePositivity(of headline: String) -> Bool {
     
     var isPos: Bool = false
-    var notNeg: Bool = true
     
     let positiveKeywords = ["good", "positive", "success", "uplifting", "promising", "kindness", "help", "cure", "triumph", "breakthrough", "improve", "recover", "praise", " sav", "wonder", "new life", "anal catapult", "" ]
     //let negativeKeywords = ["gviuldfhg"]
@@ -177,3 +187,4 @@ func hasAll (words: [String], headline: String) -> Bool {
     }
     return hasAll
 }
+
