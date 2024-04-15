@@ -22,21 +22,17 @@ struct tab_bar: View {
             
             
             Button {
-               
                 selectedTab = .opening
             } label: {
                 GeometryReader{ geo in
-                    
                     if selectedTab == .opening{
-                        
                         Rectangle()
                             .foregroundColor(.blue)
                             .frame(width: geo.size.width/2, height: 4)
                             .padding(.leading, geo.size.width/4)
+                    }
                         
                         VStack (alignment: .center, spacing: 4){
-                            
-                            
                             
                             Image(systemName: "house")
                                 .resizable()
@@ -52,17 +48,23 @@ struct tab_bar: View {
                     
                     selectedTab = .articles
                 } label: {
-                    
-                    VStack (alignment: .center, spacing: 4){
-                        Image(systemName: "bubble.left")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width:24, height: 24)
-                        Text("Articles")
-                        
+                    GeometryReader{geo in
+                        if selectedTab == .articles{
+                            Rectangle()
+                                .foregroundColor(.red)
+                                .frame(width: geo.size.width/2, height: 4)
+                                .padding(.leading, geo.size.width/4)
+                        }
+                            VStack (alignment: .center, spacing: 4){
+                                Image(systemName: "bubble.left")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width:24, height: 24)
+                                Text("Articles")
+                            }
+                            .frame(width:geo.size.width, height: geo.size.height)
                     }
                 }
-                
                 Button {
                     
                     selectedTab = .topStories
@@ -72,12 +74,12 @@ struct tab_bar: View {
                         if selectedTab == .topStories{
                             
                             Rectangle()
-                                .foregroundColor(.blue)
+                                .foregroundColor(.green)
                                 .frame(width: geo.size.width/2, height: 4)
                                 .padding(.leading, geo.size.width/4)
                         }
                         VStack (alignment: .center, spacing: 4){
-                            Image(systemName: "bubble.right")
+                            Image(systemName: "doc.text")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width:24, height: 24)
@@ -96,4 +98,3 @@ struct tab_bar: View {
             tab_bar(selectedTab: .constant(.opening))
         }
     }
-}
