@@ -48,34 +48,39 @@ class ListArticlesViewController: UITableViewController {
             let problematics = ["the-jerusalem-post", "vice-news", "wired"]
             let politicalSources = ["breitbart-news", "fox-news", "politico", "the-hill", "the-huffington-post"]
             let sportsSources = ["bbc-sport","espn", "espn-cric-info", "four-four-two", "nfl-news", "nhl-news", "talksport", "the-sport-bible"]
-            let businessSources = ["australian-financial-review", "business-insider-uk", "crypto-coins-news", "hacker-news"]
-            let generalSources = ["associated-press", "bbc-news", "al-jazeera-english", "ars-technica", "axios", "fortune", "msnbc", "nbc-news", "news-com-au", "newsweek", "rte", "the-globe-and-mail", "the-hindu", "the-irish-times", "the-lad-bible", "the-washington-post", "time", "usa-today", "recode"]
+            let businessSources = ["australian-financial-review", "business-insider-uk", "crypto-coins-news", "hacker-news","fortune","axios"]
+            let generalSources = ["associated-press", "bbc-news", "al-jazeera-english", "ars-technica",  "msnbc", "nbc-news", "news-com-au", "newsweek", "rte", "the-globe-and-mail", "the-hindu", "the-irish-times", "the-lad-bible", "the-washington-post", "time", "usa-today", "recode"]
             let entertainmentSources = ["entertainment-weekly", "ign", "mashable", "mtv-news", "mtv-news-uk", "polygon"]
             let scienceSources = ["medical-news-today", "new-scientist", "next-big-future", "techcrunch", "techradar", "the-next-web", "the-verge"]
             
-            let partialSources = ["new-scientist"]
+            let partialSources = ["associated-press", "bbc-news","msnbc"]
             let partialSources2 = ["new-scientist","associated-press", "bbc-news", "entertainment-weekly"]
-            let allSources = ["abc-news", "abc-news-au", "al-jazeera-english", "ars-technica", "associated-press", "australian-financial-review", "axios", "bbc-news", "bbc-sport", "breitbart-news", "business-insider-uk", "crypto-coins-news", "entertainment-weekly", "espn", "espn-cric-info", "fortune", "four-four-two", "fox-news", "hacker-news", "ign", "mashable", "medical-news-today", "msnbc", "mtv-news", "mtv-news-uk", "nbc-news", "new-scientist", "news-com-au", "newsweek", "next-big-future", "nfl-news", "nhl-news", "politico", "polygon", "recode", "rte", "talksport", "techcrunch", "techradar", "the-globe-and-mail", "the-hill", "the-hindu", "the-huffington-post", "the-irish-times", "the-jerusalem-post", "the-lad-bible", "the-next-web", "the-sport-bible", "the-verge", "the-washington-post", "time", "usa-today", "vice-news", "wired"]
+            let allSources = ["abc-news", "ars-technica", "associated-press", "australian-financial-review", "axios", "bbc-news", "bbc-sport", "business-insider-uk", "crypto-coins-news", "entertainment-weekly", "espn", "fortune", "four-four-two", "hacker-news", "ign", "mashable", "medical-news-today", "msnbc", "mtv-news", "mtv-news-uk", "nbc-news", "new-scientist", "news-com-au", "newsweek", "next-big-future", "nfl-news", "nhl-news", "polygon", "recode", "rte", "techcrunch", "techradar", "the-globe-and-mail", "the-hill", "the-huffington-post", "the-irish-times", "the-lad-bible", "the-next-web", "the-sport-bible", "the-verge", "the-washington-post", "time", "usa-today", "vice-news", "wired"]
             
+            let orderedSources = ["medical-news-today","abc-news", "bbc-news", "associated-press", "new-scientist", "next-big-future", "techcrunch", "techradar", "the-next-web", "the-verge"]
             
+            let excluded = ["fox-news", "the-hindu","the-jerusalem-post", "vice-news", "wired"]
             
-            for source in partialSources{
-                newsAPI.getTopHeadlines(q: "", sources: [source]){ result in
-                    switch result {
-                    case .success(let articles):
-                        
-                        //  self.articles.append(contentsOf: articles)
-                        for i in 0...articles.count-1 {
+            for source in orderedSources {
+                if (!excluded.contains(source) && !sportsSources.contains(source)){
+                    newsAPI.getTopHeadlines(q: "", sources: [source]){ result in
+                        switch result {
+                        case .success(let articles):
                             
-                            if (determinePositivity(of: articles[i].title)) {
-                                self.articles.append(articles[i])
+                            //  self.articles.append(contentsOf: articles)
+                            for i in 0...articles.count-1 {
+                                
+                                
+                                if (determinePositivity(of: articles[i].title)) {
+                                    self.articles.append(articles[i])
+                                }
                             }
+                        case .failure(let error):
+                            print("\(error)")
+                            
+                            
                         }
-                    case .failure(let error):
-                        print("\(error)")
                     }
-                case .failure(let error):
-                    print("\(error)")
                 }
             }
         }
@@ -140,20 +145,22 @@ class ListArticlesViewController: UITableViewController {
 }
 func determinePositivity(of headline: String) -> Bool {
     
-    var isPos: Bool = false
     
-    let positiveKeywords = ["good", "positive", "success", "uplifting", "promising", "kindness", "help", "cure", "triumph", "breakthrough", "improve", "recover", "praise", " sav", "wonder", "new life", "anal catapult", "" ]
+    //false makes it much more selective
+    var isPos: Bool = true
+    
+    let positiveKeywords = ["good", "positive", "success", "uplifting", "promising", "kindness", "help", "cure", "triumph", "breakthrough", "improve", "recover", "praise", " sav", "wonder", "new life", "anal catapult", "you can now buy a", "award" ]
     //let negativeKeywords = ["gviuldfhg"]
     
-    let positiveGroups = [["lower","risk"], ["slow", "progression"], ["towards", "achieving"]]
-    let negativeGroups = [["high","risk"]]
+    let positiveGroups = [["lower","risk"], ["slow", "progression"], ["towards", "achieving"],["pay", "tribute"],["extend","life"],["support", "health"]]
+    let negativeGroups = [["raise", "risk"],["increase", "risk"],["high","risk"], ["end", "badly"],["leav", "nothing"],[" surg", "insurance"], ["dust", "haze"], ["plane","crash"],["find", "more", "common"], ["birth", "control"], ["case", "hiv"]]
     
     
-    let negativeKeywords = ["dead", "kill", "deaths", "injured", "vote", "elect", "law", "president", "attorney", "lawyer", "inadequate", "jail", "prison", "president", "politic", "dying", "crime", "criminal", "convict", "court", "ballot", "shot", "shoot", "guilty", "innocent", "scam", "bill", "airdrop", "attack", "veto", "ban", "prison", "nude", "slain", "fatal", "devastat", " sex", "russia", "palestin", "murder", "biden", "trump", "elect", "fossil fuel", "abuse", "cruel", " invad", "invasion", "gaza", "israel", "fears", "climate", "syria", " AI ", "AI-", "decline", "collapse", "should"]
+    let negativeKeywords = ["dead", "kill", "deaths", "injured", "vote", "elect", "law", "president", "attorney", "lawyer", "inadequate", "jail", "prison", "president", "politic", "dying", "crime", "criminal", "convict", "court", "ballot", "shot", "shoot", "guilty", "innocent", "scam", "bill", "airdrop", "attack", "veto", "ban", "prison", "nude", "slain", "fatal", "devastat", " sex", "russia", "palestin", "murder", "biden", "trump", "elect", "fossil fuel", "abuse", "cruel", " invad", "invasion", "gaza", "israel", "fears", "climate", "syria", " AI ", "AI-", "decline", "collapse", "should", "shameful", "china", "struggl", "?", "GOP ","hostil", "inflation", "controver", "boeing", "hack", " musk ", "elon ", "tesla ", "unhealthy", "poor", "apolog", "police", "cuomo", "mocking", "facebook", " meta ", "kardashian", "jenner", "TikTok", "arrest", "jinping", "reform", "injur", "virus", "white house", "tortur", "protest", "rebel","derail", "toxic", "excessive", "suing", "sued", "lies", "pope", "expos", "bugs", "microsoft", "google", "prince", "violen", "crash", "minister", "india", "spain", "blackrock"]
     
           for keyword in positiveKeywords {
         if headline.lowercased().contains(keyword) {
-           isPos=true
+           isPos=false
         }
         
               for group in positiveGroups {
