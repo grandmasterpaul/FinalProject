@@ -9,6 +9,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="kJI-e8-3iG">
+            <objects>
+                <viewController id="7Dd-w8-h1T" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1k5-k3-Sfv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="03E-Cx-xdm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6ei-sh-8lR">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Y6B-qm-VxL">
+                            <rect key="frame" x="122" y="6" width="131" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                            <connections>
+                                <action selector="didTapSegmentWithSegment:" destination="7Dd-w8-h1T" eventType="valueChanged" id="dd8-yD-Xq8"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8HV-eq-pCs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="777" y="172"/>
+        </scene>
         <!--List Articles View Controller-->
         <scene sceneID="u2N-cg-kmt">
             <objects>
@@ -34,7 +63,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="ztW-rL-FZ2">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" id="Yvw-Wh-Dv4">
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" id="Yvw-Wh-Dv4">
                             <rect key="frame" x="150" y="5" width="75" height="34.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button"/>
@@ -57,11 +86,11 @@
             <objects>
                 <viewController title="Story View" id="4xc-4F-CRj" customClass="StoryViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RFZ-S6-OPa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mG-bR-SN3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="1236"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1280"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kyw-Iv-NsY" userLabel="LabelView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
@@ -119,7 +148,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="iR4-Jj-USZ" kind="relationship" relationship="rootViewController" id="2MB-6L-KF8"/>
+                        <segue destination="7Dd-w8-h1T" kind="relationship" relationship="rootViewController" id="UHw-IH-cv0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdR-lD-oFu" userLabel="First Responder" sceneMemberID="firstResponder"/>
