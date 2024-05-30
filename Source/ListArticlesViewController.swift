@@ -11,6 +11,46 @@ import UIKit
 import NewsAPISwift
 import SafariServices
 
+struct SavedArticle: Codable {
+    let title: String
+    let url: URL
+}
+
+extension NewsArticle {
+    static func saveFavoriteArticles(_ articles: [NewsArticle]) {
+        let savedArticles = articles.map { SavedArticle(title: $0.title ?? "", url: $0.url) }
+        let encodedData = try? JSONEncoder().encode(savedArticles)
+        UserDefaults.standard.set(encodedData, forKey: "FavoriteArticles")
+    }
+    
+    static func loadFavoriteArticles() -> [NewsArticle] {
+        if let encodedData = UserDefaults.standard.data(forKey: "FavoriteArticles") {
+            if let savedArticles = try? JSONDecoder().decode([SavedArticle].self, from: encodedData) {
+                return savedArticles.map { NewsArticle(source: NewsSource(id: "", name: ""), author: nil, title: $0.title, articleDescription: nil, url: $0.url, urlToImage: nil, publishedAt: Date()) }
+            }
+        }
+        return []
+    }
+    
+    var isFavorite: Bool {
+        get {
+            let favoriteArticles = NewsArticle.loadFavoriteArticles()
+            return favoriteArticles.contains { $0.url == self.url }
+        }
+        set {
+            var favoriteArticles = NewsArticle.loadFavoriteArticles()
+            if newValue {
+                if !favoriteArticles.contains(self) {
+                    favoriteArticles.append(self)
+                }
+            } else {
+                favoriteArticles.removeAll { $0.url == self.url }
+            }
+            NewsArticle.saveFavoriteArticles(favoriteArticles)
+        }
+    }
+}
+
 class ListArticlesViewController: UITableViewController {
 
     var newsAPI = NewsAPI(apiKey: "abbd92b503ab44a7ac01aeae49855bb0")
@@ -19,6 +59,7 @@ class ListArticlesViewController: UITableViewController {
     var loaded = true
     var hasAppeared = false
     
+    /*
     //will crash if url is invalid
     let topURLs: [String] = [
         "https://www.medicalnewstoday.com/articles/crispr-gene-editing-rare-eye-disorder",
@@ -40,6 +81,7 @@ class ListArticlesViewController: UITableViewController {
         "3D-printed rocket engine revs up for orbital launch in Scotland",
         "Tiny insects excrete vast amounts of urine using an anal catapult"
     ]
+     */
     
     var articles = [NewsArticle]() {
         didSet {
@@ -57,6 +99,9 @@ class ListArticlesViewController: UITableViewController {
         tableView.estimatedRowHeight = 44.0
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ArticleCell")
         
+        self.view.backgroundColor = Constants.backgroundColor
+        
+        //loadFavoriteArticles()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,10 +116,11 @@ class ListArticlesViewController: UITableViewController {
             self.articles = []
             /*
             self.articles.append(getArticle(urlStr: "https://www.medicalnewstoday.com/articles/crispr-gene-editing-rare-eye-disorder", title: "CRISPR-based gene editing treatment shows promise for rare eye disorder"))
-            */
+            
             for i in 0...topTitles.count-1 {
                 self.articles.append(getArticle(urlStr: topURLs[i], title: topTitles[i]))
             }
+             */
             
             let problematics = ["the-jerusalem-post", "vice-news", "wired"]
             let politicalSources = ["breitbart-news", "fox-news", "politico", "the-hill", "the-huffington-post"]
@@ -123,20 +169,61 @@ class ListArticlesViewController: UITableViewController {
         return 1
     }
     
+    // Function to toggle favorite status of an article
+    func toggleFavoriteStatus(at index: Int) {
+        articles[index].isFavorite.toggle()
+        //saveFavoriteArticles()
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
+    func resetHearts() {
+        for indexPath in tableView.indexPathsForVisibleRows ?? [] {
+            let cell = tableView.cellForRow(at: indexPath)
+            if let articleCell = cell, let button = articleCell.accessoryView as? UIButton {
+                let article = articles[indexPath.row]
+                let buttonImage = article.isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+                button.setImage(buttonImage, for: .normal)
+                button.tintColor = article.isFavorite ? .red : .gray // Make the heart red if it's a favorite, otherwise gray
+            }
+        }
+    }
+    
+    // MARK: - Table view data source
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articles.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath)
+        let article = articles[indexPath.row]
         
-        cell.textLabel?.adjustsFontSizeToFitWidth = false
-        cell.textLabel?.minimumScaleFactor = 0.5
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = "\(articles[indexPath.row].title) - \(articles[indexPath.row].source.name)"
+        // Set the title text and adjust the number of lines
+        cell.textLabel?.text = "\(article.source.name): \(article.title)"
+        cell.textLabel?.numberOfLines = 0 // This will allow the title to wrap to multiple lines
+        cell.textLabel?.font = Constants.textFont
         
+        // Add a favorite button to the cell
+        let favoriteButton = UIButton(type: .custom)
+        let buttonImage = article.isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        favoriteButton.setImage(buttonImage, for: .normal)
+        favoriteButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        favoriteButton.tintColor = article.isFavorite ? .red : .gray // Make the heart red if it's a favorite, otherwise gray
+        favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped(_:)), for: .touchUpInside)
+        cell.accessoryView = favoriteButton
         
         return cell
+    }
+
+    @objc func favoriteButtonTapped(_ sender: UIButton) {
+        // Get the indexPath of the cell containing the tapped button
+        let point = sender.convert(CGPoint.zero, to: self.tableView)
+        if let indexPath = self.tableView.indexPathForRow(at: point) {
+            // Toggle the favorite status of the corresponding article
+            toggleFavoriteStatus(at: indexPath.row)
+        }
+        // Reload the table view to update the favorite button
+        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -150,7 +237,7 @@ class ListArticlesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Create a variable that you want to send based on the destination view controller
         // You can get a reference to the data by using indexPath shown below
-        var url : URL? = articles[indexPath.row].url
+        let url : URL? = articles[indexPath.row].url
         let vc = SFSafariViewController(url: url!)
       
         
@@ -176,6 +263,7 @@ class ListArticlesViewController: UITableViewController {
     }
     
 }
+
 func determinePositivity(of headline: String) -> Bool {
     
     
