@@ -14,7 +14,7 @@ extension Color{
 
 
 struct Constants{
-    static let textFont: Font = Font(UIFont(name: "HelveticaNeue-Thin", size: 30) ?? UIFont.systemFont(ofSize: 30))
+    static let textFont: Font = Font(UIFont(name: "Times", size: 30) ?? UIFont.systemFont(ofSize: 30))
 }
 
 

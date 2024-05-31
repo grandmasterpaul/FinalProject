@@ -20,6 +20,7 @@ struct ContentView: View {
     @State var showView: ShowView = .open
     
     
+   
     var body: some View {
         VStack {
             
@@ -39,27 +40,90 @@ struct ContentView: View {
                 Button {
                     showView = .home
                 }label: {
-                    Text("Opening")
-                    Image(systemName: "house")
                     
-                }
-                
-                Button {
-                    showView = .open
-                }label: {
-                    Text("Articles")
-                    Image(systemName: "book")
                     
+                 
+            
+                 
+                    VStack (alignment: .center, spacing: 4){
+                     
+                        
+                        Image(systemName: "house")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width:24, height: 24)
+                            .foregroundColor(.red)
+                        
+                        Text("Opening")
+                            .foregroundColor(.red)
+                        
+                        GeometryReader{geo in
+                            
+                            if showView == .home{
+                                
+                                Rectangle()
+                                
+                                    .foregroundColor(.red)
+                                
+                                    .frame(width: geo.size.width/2, height: 4)
+                                
+                                    .padding(.leading, geo.size.width/4)
+                            }
+                            
+                            
+                        }
+                        .frame(height: -2.0)
+                        
+                        
+                    }
+                    
+                    Button {
+                        showView = .open
+                    }label: {
+                        
+                        
+                        VStack (alignment: .center, spacing: 4){
+                            
+                            Image(systemName: "bubble.left")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width:24, height: 24)
+                                .foregroundColor(.red)
+                            
+                            Text("Articles")
+                                .foregroundColor(.red)
+                             
+                            
+                            GeometryReader{geo in
+                                
+                                if showView == .open{
+                                    
+                                    Rectangle()
+                                
+                   
+                       
+                                        .foregroundColor(.red)
+                                        .frame(width: geo.size.width/2, height: 4)
+                                    
+                                        .padding(.leading, geo.size.width/4)
+                                }
+                               
+                            }
+                         //makes tab bar stay at bottom
+                            .frame(height: -2.0)
+                            
+                        }
+                        
+                    }
                 }
             }
         }
-        .padding()
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
+    //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
 }
-//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

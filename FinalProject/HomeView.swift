@@ -40,17 +40,34 @@ struct HomeView: View {
                         
                         Text("ONLYGOODNEWS")
                             .font(Constants.textFont)
-                            .foregroundColor(.black)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                            .foregroundColor(.white)
+                            .shadow(radius: 5)
+                            .frame(width: 260)
+                            .padding(.top, 5)
+                        
+                        
+                        Spacer()
                         
                         
                         Image(holder)
                             .resizable()
+                            .cornerRadius(20)
+                            .padding()
                             .aspectRatio(contentMode: .fit)
+                            .background(Color.red)
+                            .cornerRadius(20)
+                            
+                         Spacer()
                         
                         Text("Welcome!")
                             .font(Constants.textFont)
-                            .foregroundColor(.black)
-                            .background(.white)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                            .foregroundColor(.white)
+                            .shadow(radius: 5)
+                            .padding(.top, 5)
                         
                         
                     }
