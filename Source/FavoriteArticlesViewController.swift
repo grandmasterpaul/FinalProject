@@ -38,7 +38,7 @@ class FavoriteArticlesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath)
-        let article = favoriteArticles[indexPath.row]
+        let article = favoriteArticles[indexPath.row] 
         cell.textLabel?.text = "\(article.title)"
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.font = Constants.textFont

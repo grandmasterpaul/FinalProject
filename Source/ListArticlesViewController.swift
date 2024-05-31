@@ -59,7 +59,7 @@ class ListArticlesViewController: UITableViewController {
     var loaded = true
     var hasAppeared = false
     
-    /*
+    
     //will crash if url is invalid
     let topURLs: [String] = [
         "https://www.medicalnewstoday.com/articles/crispr-gene-editing-rare-eye-disorder",
@@ -81,7 +81,7 @@ class ListArticlesViewController: UITableViewController {
         "3D-printed rocket engine revs up for orbital launch in Scotland",
         "Tiny insects excrete vast amounts of urine using an anal catapult"
     ]
-     */
+     
     
     var articles = [NewsArticle]() {
         didSet {
@@ -116,11 +116,11 @@ class ListArticlesViewController: UITableViewController {
             self.articles = []
             /*
             self.articles.append(getArticle(urlStr: "https://www.medicalnewstoday.com/articles/crispr-gene-editing-rare-eye-disorder", title: "CRISPR-based gene editing treatment shows promise for rare eye disorder"))
-            
+            */
             for i in 0...topTitles.count-1 {
                 self.articles.append(getArticle(urlStr: topURLs[i], title: topTitles[i]))
             }
-             */
+             
             
             let problematics = ["the-jerusalem-post", "vice-news", "wired"]
             let politicalSources = ["breitbart-news", "fox-news", "politico", "the-hill", "the-huffington-post"]
@@ -134,7 +134,7 @@ class ListArticlesViewController: UITableViewController {
             let partialSources2 = ["new-scientist","associated-press", "bbc-news", "entertainment-weekly"]
             let allSources = ["abc-news", "ars-technica", "associated-press", "australian-financial-review", "axios", "bbc-news", "bbc-sport", "business-insider-uk", "crypto-coins-news", "entertainment-weekly", "espn", "fortune", "four-four-two", "hacker-news", "ign", "mashable", "medical-news-today", "msnbc", "mtv-news", "mtv-news-uk", "nbc-news", "new-scientist", "news-com-au", "newsweek", "next-big-future", "nfl-news", "nhl-news", "polygon", "recode", "rte", "techcrunch", "techradar", "the-globe-and-mail", "the-hill", "the-huffington-post", "the-irish-times", "the-lad-bible", "the-next-web", "the-sport-bible", "the-verge", "the-washington-post", "time", "usa-today", "vice-news", "wired"]
             
-            let orderedSources = ["medical-news-today","abc-news", "bbc-news", "associated-press", "recode", "new-scientist", "next-big-future", "techcrunch", "techradar", "the-next-web", "the-verge", "four-four-two"]
+            let orderedSources = ["medical-news-today","abc-news", "bbc-news", "associated-press", "recode", "new-scientist", "next-big-future", "techcrunch", "techradar", "the-next-web"]
             
             let excluded = ["fox-news", "the-hindu","the-jerusalem-post", "vice-news", "wired"]
             
@@ -274,10 +274,10 @@ func determinePositivity(of headline: String) -> Bool {
     //let negativeKeywords = ["gviuldfhg"]
     
     let positiveGroups = [["lower","risk"], ["slow", "progression"], ["towards", "achieving"],["pay", "tribute"],["extend","life"],["support", "health"]]
-    let negativeGroups = [["raise", "risk"],["increase", "risk"],["high","risk"], ["end", "badly"],["leav", "nothing"],[" surg", "insurance"], ["dust", "haze"], ["plane","crash"],["find", "more", "common"], ["birth", "control"], ["case", "hiv"],["white", "house"],["oval","office"],["cancer", "rising"],["hour", "week"]]
+    let negativeGroups = [["raise", "risk"],["increase", "risk"],["high","risk"], ["end", "badly"],["leav", "nothing"],[" surg", "insurance"], ["dust", "haze"], ["plane","crash"],["find", "more", "common"], ["birth", "control"], ["case", "hiv"],["white", "house"],["oval","office"],["cancer", "rising"],["hour", "week"],["alzheimers","diabetes"]]
     
     
-    let negativeKeywords = ["dead", "kill", "deaths", "injured", "vote", "elect", "law", "president", "attorney", "lawyer", "inadequate", "jail", "prison", "president", "politic", "dying", "crime", "criminal", "convict", "court", "ballot", "shot", "shoot", "guilty", "innocent", "scam", "bill", "airdrop", "attack", "veto", "ban", "prison", "nude", "slain", "fatal", "devastat", " sex", "russia", "palestin", "murder", "biden", "trump", "elect", "fossil fuel", "abuse", "cruel", " invad", "invasion", "gaza", "israel", "fears", "climate", "syria", " ai ", "ai-", "decline", "collapse", "should", "shameful", "china", "struggl", "?", "gop ","hostil", "inflation", "controver", "boeing", "hack", " musk ", "elon ", "tesla ", "unhealthy", "poor", "apolog", "police", "cuomo", "mocking", "facebook", " meta ", "kardashian", "jenner", "tiktok", "arrest", "jinping", "reform", "injur", "virus", "white house", "tortur", "protest", "rebel","derail", "toxic", "excessive", "suing", "sued", "lies", "pope", "expos", "bugs", "microsoft", "google", "prince", "violen", "crash", "minister", "india", "spain", "blackrock", "rape", "rapist", "taiwan", " dies", "copyright", "wildfire", "evacuat", " cult "]
+    let negativeKeywords = ["dead", "kill", "deaths", "injured", "vote", "elect", "law", "president", "attorney", "lawyer", "inadequate", "jail", "prison", "president", "politic", "dying", "crime", "criminal", "convict", "court", "ballot", "shot", "shoot", "guilty", "innocent", "scam", "bill", "airdrop", "attack", "veto", "ban", "prison", "nude", "slain", "fatal", "devastat", " sex", "russia", "palestin", "murder", "biden", "trump", "elect", "fossil fuel", "abuse", "cruel", " invad", "invasion", "gaza", "israel", "fears", "climate", "syria", " ai ", "ai-", "decline", "collapse", "should", "shameful", "china", "struggl", "?", "gop ","hostil", "inflation", "controver", "boeing", "hack", " musk ", "elon ", "tesla ", "unhealthy", "poor", "apolog", "police", "cuomo", "mocking", "facebook", " meta ", "kardashian", "jenner", "tiktok", "arrest", "jinping", "reform", "injur", "virus", "white house", "tortur", "protest", "rebel","derail", "toxic", "excessive", "suing", "sued", "lies", "pope", "expos", "bugs", "microsoft", "google", "prince", "violen", "crash", "minister", "india", "spain", "blackrock", "rape", "rapist", "taiwan", " dies", "copyright", "wildfire", "evacuat", " cult ", "abortion", "inflammation", "chronic", "volcano"]
     
           for keyword in positiveKeywords {
         if headline.lowercased().contains(keyword) {
@@ -305,7 +305,6 @@ func determinePositivity(of headline: String) -> Bool {
     
     return isPos
 }
-
 func hasAll (words: [String], headline: String) -> Bool {
     
     var hasAll=true

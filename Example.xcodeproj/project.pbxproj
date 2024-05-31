@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1AC94E2C0A1D9A0044D411 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1AC94D2C0A1D9A0044D411 /* SwiftUIView.swift */; };
+		1C1AC94F2C0A1F560044D411 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 4C3964A720E32A59003B6835 /* Assets.xcassets */; };
 		1C40D5962BF635A200A89442 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40D5952BF635A200A89442 /* Constants.swift */; };
 		1C40D5982BF6361D00A89442 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40D5972BF6361D00A89442 /* ContentViewController.swift */; };
 		1C40D59A2BF6364100A89442 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40D5992BF6364100A89442 /* HomeView.swift */; };
@@ -22,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C1AC94D2C0A1D9A0044D411 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		1C40D5952BF635A200A89442 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1C40D5972BF6361D00A89442 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		1C40D5992BF6364100A89442 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		4C19945520E328E40020970E = {
 			isa = PBXGroup;
 			children = (
+				4C3964A720E32A59003B6835 /* Assets.xcassets */,
 				4C3964A420E32A59003B6835 /* Source */,
 				4C19945F20E328E50020970E /* Products */,
 				C9B319809ACE5704FDD0B34C /* Pods */,
@@ -80,7 +84,6 @@
 				6DD2409C2C075D8800D0E47E /* FavoriteArticlesViewController.swift */,
 				6DE52A8B2BA49473009712DA /* StoryViewController.swift */,
 				4C3964AD20E32A59003B6835 /* AppDelegate.swift */,
-				4C3964A720E32A59003B6835 /* Assets.xcassets */,
 				4C3964B820E32CC1003B6835 /* Main.storyboard */,
 				4C3964A820E32A59003B6835 /* LaunchScreen.storyboard */,
 				4C3964AE20E32A59003B6835 /* Info.plist */,
@@ -89,6 +92,7 @@
 				1C40D59D2BF636A100A89442 /* ViewController.swift */,
 				1C40D5992BF6364100A89442 /* HomeView.swift */,
 				1C40D59B2BF6367600A89442 /* HostingView.swift */,
+				1C1AC94D2C0A1D9A0044D411 /* SwiftUIView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -219,8 +223,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C1AC94F2C0A1F560044D411 /* Assets.xcassets in Sources */,
 				1C40D5962BF635A200A89442 /* Constants.swift in Sources */,
 				1C40D59A2BF6364100A89442 /* HomeView.swift in Sources */,
+				1C1AC94E2C0A1D9A0044D411 /* SwiftUIView.swift in Sources */,
 				4C3964B520E32A59003B6835 /* AppDelegate.swift in Sources */,
 				1C40D59E2BF636A100A89442 /* ViewController.swift in Sources */,
 				1C40D59C2BF6367600A89442 /* HostingView.swift in Sources */,

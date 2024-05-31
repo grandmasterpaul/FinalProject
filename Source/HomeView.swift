@@ -10,14 +10,22 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        
-        Text("Only Good News")
-            .foregroundColor(.red)
-        Spacer()
-        
-        
+        VStack{
+           
+            Text("Only Good News")
+                .foregroundColor(.red)
+                .padding(.top,CGFloat(100))
+            Spacer()
+            
+            Image("logo2")
+                .resizable()
+                //.frame(width: 60, height: 60)
+                .padding(.bottom,300)
+               
+                
+            
+        }
     }
-        
 }
     
 struct HomeView_Previews: PreviewProvider {
@@ -25,3 +33,4 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
+
