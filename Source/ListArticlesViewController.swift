@@ -67,8 +67,7 @@ class ListArticlesViewController: UITableViewController {
         "https://arstechnica.com/gadgets/2024/04/you-can-now-buy-a-flame-throwing-robot-dog-for-under-10000/",
         "https://www.nextbigfuture.com/2024/03/superconducting-magnet-reduces-the-cost-for-a-fusion-reactor-by-a-factor-of-40.html",
         "https://www.nextbigfuture.com/2024/03/2027-space-telescope-could-find-400-rogue-planets.html",
-        "https://thenextweb.com/news/3d-printed-rocket-engine-revs-up-orbital-launch-scotland",
-        "https://www.newscientist.com/article/2361733-tiny-insects-excrete-vast-amounts-of-urine-using-an-anal-catapult/"
+        "https://thenextweb.com/news/3d-printed-rocket-engine-revs-up-orbital-launch-scotland"
         ]
   
     
@@ -78,8 +77,7 @@ class ListArticlesViewController: UITableViewController {
         "You can now buy a flame-throwing robot dog for under $10,000",
         "Superconducting Magnet Reduces the Cost for a Fusion Reactor by a Factor of 40",
         "2027 Space Telescope Could Find 400 Rogue Planets",
-        "3D-printed rocket engine revs up for orbital launch in Scotland",
-        "Tiny insects excrete vast amounts of urine using an anal catapult"
+        "3D-printed rocket engine revs up for orbital launch in Scotland"
     ]
      
     
@@ -134,13 +132,13 @@ class ListArticlesViewController: UITableViewController {
             let partialSources2 = ["new-scientist","associated-press", "bbc-news", "entertainment-weekly"]
             let allSources = ["abc-news", "ars-technica", "associated-press", "australian-financial-review", "axios", "bbc-news", "bbc-sport", "business-insider-uk", "crypto-coins-news", "entertainment-weekly", "espn", "fortune", "four-four-two", "hacker-news", "ign", "mashable", "medical-news-today", "msnbc", "mtv-news", "mtv-news-uk", "nbc-news", "new-scientist", "news-com-au", "newsweek", "next-big-future", "nfl-news", "nhl-news", "polygon", "recode", "rte", "techcrunch", "techradar", "the-globe-and-mail", "the-hill", "the-huffington-post", "the-irish-times", "the-lad-bible", "the-next-web", "the-sport-bible", "the-verge", "the-washington-post", "time", "usa-today", "vice-news", "wired"]
             
-            let orderedSources = ["medical-news-today","abc-news", "bbc-news", "associated-press", "recode", "new-scientist", "next-big-future", "techcrunch", "techradar", "the-next-web"]
+            let orderedSources = ["next-big-future","medical-news-today","abc-news", "associated-press", "recode", "new-scientist", "techcrunch", "techradar", "the-next-web"]
             
             let excluded = ["fox-news", "the-hindu","the-jerusalem-post", "vice-news", "wired"]
             
             let oneCall = ["medical-news-today"]
             
-            for source in oneCall {
+            for source in orderedSources {
                 if (!excluded.contains(source) && !sportsSources.contains(source)){
                     newsAPI.getTopHeadlines(q: "", sources: [source]){ result in
                         switch result {
@@ -274,10 +272,10 @@ func determinePositivity(of headline: String) -> Bool {
     //let negativeKeywords = ["gviuldfhg"]
     
     let positiveGroups = [["lower","risk"], ["slow", "progression"], ["towards", "achieving"],["pay", "tribute"],["extend","life"],["support", "health"]]
-    let negativeGroups = [["raise", "risk"],["increase", "risk"],["high","risk"], ["end", "badly"],["leav", "nothing"],[" surg", "insurance"], ["dust", "haze"], ["plane","crash"],["find", "more", "common"], ["birth", "control"], ["case", "hiv"],["white", "house"],["oval","office"],["cancer", "rising"],["hour", "week"],["alzheimers","diabetes"]]
+    let negativeGroups = [["raise", "risk"],["increase", "risk"],["high","risk"], ["end", "badly"],["leav", "nothing"],[" surg", "insurance"], ["dust", "haze"], ["plane","crash"],["find", "more", "common"], ["birth", "control"], ["case", "hiv"],["white", "house"],["oval","office"],["cancer", "rising"],["hour", "week"],["alzheimers","diabetes"], ["body", "found"], ["isn't", "perfect"], ["hang", "in", "balance"], ["north", "korea"]]
     
     
-    let negativeKeywords = ["dead", "kill", "deaths", "injured", "vote", "elect", "law", "president", "attorney", "lawyer", "inadequate", "jail", "prison", "president", "politic", "dying", "crime", "criminal", "convict", "court", "ballot", "shot", "shoot", "guilty", "innocent", "scam", "bill", "airdrop", "attack", "veto", "ban", "prison", "nude", "slain", "fatal", "devastat", " sex", "russia", "palestin", "murder", "biden", "trump", "elect", "fossil fuel", "abuse", "cruel", " invad", "invasion", "gaza", "israel", "fears", "climate", "syria", " ai ", "ai-", "decline", "collapse", "should", "shameful", "china", "struggl", "?", "gop ","hostil", "inflation", "controver", "boeing", "hack", " musk ", "elon ", "tesla ", "unhealthy", "poor", "apolog", "police", "cuomo", "mocking", "facebook", " meta ", "kardashian", "jenner", "tiktok", "arrest", "jinping", "reform", "injur", "virus", "white house", "tortur", "protest", "rebel","derail", "toxic", "excessive", "suing", "sued", "lies", "pope", "expos", "bugs", "microsoft", "google", "prince", "violen", "crash", "minister", "india", "spain", "blackrock", "rape", "rapist", "taiwan", " dies", "copyright", "wildfire", "evacuat", " cult ", "abortion", "inflammation", "chronic", "volcano"]
+    let negativeKeywords = ["died", "dies", "dead", "kill", "deaths", "injured", "vote", "elect", "law", "president", "attorney", "lawyer", "inadequate", "jail", "prison", "president", "politic", "dying", "crime", "criminal", "convict", "court", "ballot", "shot", "shoot", "guilty", "innocent", "scam", "bill", "airdrop", "attack", "veto", "ban", "prison", "nude", "slain", "fatal", "devastat", " sex", "russia", "palestin", "murder", "biden", "trump", "elect", "fossil fuel", "abuse", "cruel", " invad", "invasion", "gaza", "israel", "fears", "climate", "syria", " ai ", "ai-", "decline", "collapse", "should", "shameful", "china", "struggl", "?", "gop ","hostil", "inflation", "controver", "boeing", "hack", " musk ", "elon ", "tesla ", "unhealthy", "poor", "apolog", "police", "cuomo", "mocking", "facebook", " meta", "kardashian", "jenner", "tiktok", "arrest", "jinping", "reform", "injur", "virus", "white house", "tortur", "protest", "rebel","derail", "toxic", "excessive", "suing", "sued", "lies", "pope", "expos", "bugs", "microsoft", "google", "prince", "violen", "crash", "minister", "india", "spain", "blackrock", "rape", "rapist", "taiwan", " dies", "copyright", "wildfire", "evacuat", " cult ", "abortion", "inflammation", "chronic", "volcano", "risk", "sues", "assault", "stabbed", "machete", " flu ", "mortgage", "trial", "alleged", "worse", "thunderstorm", "ozempic", "daymares", "getir"]
     
           for keyword in positiveKeywords {
         if headline.lowercased().contains(keyword) {

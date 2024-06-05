@@ -1,36 +1,91 @@
 //
 //  HomeView.swift
-//  Example
+//  FinalProject
 //
-//  Created by David Oprea (student LM) on 4/29/24.
-//  Copyright © 2024 Lucas Lima. All rights reserved.
+//  Created by Nolan Walters (student LM) on 4/1/24.
 //
 
 import SwiftUI
 
+
+
 struct HomeView: View {
-    var body: some View {
-        VStack{
-           
-            Text("Only Good News")
-                .foregroundColor(.red)
-                .padding(.top,CGFloat(100))
-            Spacer()
-            
-            Image("logo2")
-                .resizable()
-                //.frame(width: 60, height: 60)
-                .padding(.bottom,300)
-               
-                
-            
+    
+    let holder: String
+    
+    init() {
+        let num = Int.random(in: 1...3) // Generate a random number between 1 and 4
+        switch num {
+        case 1:
+            holder = "quote1"
+        case 2:
+            holder = "quote2"
+        case 3:
+            holder = "quote3"
+        case 4:
+            holder = "quote4"
+        default:
+            holder = ""
         }
     }
-}
     
+    
+    var body: some View {
+        
+        NavigationView{
+           
+            VStack{
+               
+                    VStack{
+                        
+                        Text("ONLYGOODNEWS")
+                            .font(Font(Constants.textFont))
+                            .background(Color.red)
+                            .cornerRadius(10)
+                            .foregroundColor(.white)
+                            .shadow(radius: 5)
+                            .frame(width: 260)
+                            .padding(.top, 90)
+                        
+                        
+                        Spacer()
+                        
+                        
+                        Image(holder)
+                            .resizable()
+                            .cornerRadius(20)
+                            .padding()
+                            .aspectRatio(contentMode: .fit)
+                            .background(Color.red)
+                            .cornerRadius(20)
+                            
+                         Spacer()
+                        
+                        Text("Welcome!")
+                            .font(Font(Constants.textFont))
+                            .background(Color.red)
+                            .cornerRadius(10)
+                            .foregroundColor(.white)
+                            .shadow(radius: 5)
+                            .padding(.top, 5)
+                            .padding(.bottom,20)
+                        
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+        
+        
+        
+    }
+}
+
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
 }
-
